@@ -7,12 +7,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.order.dao.ProductDAO;
-import com.order.dao.ProductDAOImp;
-
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages="com.order.controller")
+@ComponentScan(basePackages="com.order")
 public class AppConfig {
 
 	// setting up ViewResolver
@@ -28,7 +25,7 @@ public class AppConfig {
 	}
 	
 	@Bean
-	DriverManagerDataSource getDataSource() {
+	DriverManagerDataSource dataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUrl("jdbc:mysql://localhost:3306/database2");
@@ -39,9 +36,6 @@ public class AppConfig {
 
 	}
 
-	@Bean
-	public ProductDAO getUserDao() {
-		return new ProductDAOImp(getDataSource());
-	}
+	
 
 }

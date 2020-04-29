@@ -2,26 +2,28 @@ package com.order.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
+import org.springframework.stereotype.Component;
 import com.order.model.Product;
 
+@Component
 public class ProductDAOImp implements ProductDAO {
 	
-	private JdbcTemplate jdbcTemplate;
+	 JdbcTemplate jdbcTemplate;
 
-	public ProductDAOImp(DriverManagerDataSource driverManagerDataSource) {
-		jdbcTemplate = new JdbcTemplate(driverManagerDataSource);
+	public ProductDAOImp(DriverManagerDataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 
 	@Override
-	public int registerUser(Product p) {
+	public int addProduct(Product p) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO USER_DATA VALUES(?,?)";
+		String sql = "INSERT INTO product_data VALUES(?,?,?,?)";
 
 		try {
-			
-			int counter = jdbcTemplate.update(sql, new Object[] { p.getPid(), p.getPassword() });
+
+			int counter = jdbcTemplate.update(sql,
+					new Object[] { p.getPid(), p.getPname(), p.getPrice(), p.getFinalPrice() });
 
 			return counter;
 
@@ -30,28 +32,7 @@ public class ProductDAOImp implements ProductDAO {
 			return 0;
 		}
 	}
-
-	@Override
-	public String loginUser(Product p) {
-String sql = "SELECT USER_ID FROM USER_DATA WHERE USER_ID=? AND USER_PASS=?";
-		
-		try {
-
-			String userId = jdbcTemplate.queryForObject(sql, new Object[] {
-					p.getPid(), p.getPassword() }, String.class);
-
-			return userId;
-			
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-
-	@Override
-	public void addProduct(Product p) {
-		// TODO Auto-generated method stub
 		
 	}
 
-}
+

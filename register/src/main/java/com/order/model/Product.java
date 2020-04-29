@@ -4,7 +4,7 @@ public class Product {
 
 	String pid;
 	String pname;
-	int price;
+	double price;
 	double tax;
 	double finalPrice;
 	public double getTax() {
@@ -31,16 +31,13 @@ public class Product {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Object getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Product added successfully with PId: ${pid}
+Product added successfully 
 
 </body>
 </html>
