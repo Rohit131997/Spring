@@ -1,5 +1,7 @@
 package com.order.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,4 +34,22 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 
+	@Override
+	public List<Product> getProducts() {
+		// TODO Auto-generated method stub
+		return productdao.getProducts();
+	}
+
+
+	@Override
+	public int editProduct(Product product) {
+		return productdao.editProduct(product);
+	}
+	
+
+	@Override
+	public Product getProductById(int pid) {
+		return productdao.getProductById(pid);
+
+}
 }
