@@ -42,8 +42,8 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public int editProduct(Product product) {
-		return productdao.editProduct(product);
+	public int editProduct(Product p) {
+		return productdao.editProduct(p);
 	}
 	
 

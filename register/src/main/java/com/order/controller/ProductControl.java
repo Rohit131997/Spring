@@ -39,17 +39,17 @@ public class ProductControl {
 		return "viewProducts";
 	}
 
-	@RequestMapping(value = "/editProduct/{productId}")
+	@RequestMapping(value = "/editProduct/{pid}")
 	public String edit(@PathVariable int pid, Model model) {
-		Product product = productService.getProductById(pid);
-		model.addAttribute("command", product);
+		Product p = productService.getProductById(pid);
+		model.addAttribute("command", p);
 		return "editProduct";
 	}
 
 	/* It updates model object. */
-	@RequestMapping(value = "/editProduct", method = RequestMethod.GET)
-	public String editProducts(@ModelAttribute("product") Product product) {
-		productService.addProduct(product);
+	@RequestMapping(value = "/editProduct", method = RequestMethod.POST)
+	public String editProduct(@ModelAttribute("command") Product p) {
+		productService.editProduct(p);
 		return "redirect:/viewProducts";
 	}
 

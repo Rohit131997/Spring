@@ -2,7 +2,7 @@ package com.order.model;
 
 public class Product {
 
-	String pid;
+	int pid;
 	String pname;
 	double price;
 	double tax;
@@ -19,10 +19,10 @@ public class Product {
 	public void setFinalPrice(double finalPrice) {
 		this.finalPrice = finalPrice;
 	}
-	public String getPid() {
+	public int getPid() {
 		return pid;
 	}
-	public void setPid(String pid) {
+	public void setPid(int pid) {
 		this.pid = pid;
 	}
 	public String getPname() {

@@ -8,8 +8,8 @@
 </head>
 <body>
 <form method="post" action="result">
-id: <input type="text" name="pid"/><br/>
-name: <input type="text" name="pname"/><br/>
+pid: <input type="text" name="pid"/><br/>
+pname: <input type="text" name="pname"/><br/>
 price: <input type="text" name="price"/><br/>
 <input type="submit" value="ADDPRODUCT"/><br/>
 
