@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="https://www.springframework.org/schema/beans"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="https://www.springframework.org/schema/aop"
+	xsi:schemaLocation="https://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		https://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+		
+		<bean id = "callobjvalue" class="com.spring.example.objinjection.Client"></bean>
+		
+		<bean id = "employee" class = "com.spring.example.objinjection.Emloyee1">
+		<property name ="empId" value ="40258"/>
+		<property name ="clientCalling" ref="callobjvalue" />
+		</bean>
+		
+		<bean id = "emp" class = "com.spring.example.objinjection.Employee2">
+		<property name ="call" ref="callobjvalue" />
+		</bean>
+		
+		
+		
+</beans>
