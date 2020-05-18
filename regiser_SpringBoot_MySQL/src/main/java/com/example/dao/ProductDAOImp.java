@@ -21,14 +21,14 @@ public class ProductDAOImp implements ProductDAO {
 
 	@Override
 	public List<Product> getAllProducts() {
-		String sql = "SELECT pId, pName, price FROM product_data";
+		String sql = "SELECT pId, pName, price FROM product_info";
 		RowMapper<Product> rowMapper = new ProductRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 	@Override
 	public Product getProductById(int pId) {
-		String sql = "SELECT pId, pName, price FROM product_data WHERE pId = ?";
+		String sql = "SELECT pId, pName, price FROM product_info WHERE pId = ?";
 		RowMapper<Product> rowMapper = new BeanPropertyRowMapper<Product>(Product.class);
 		Product article = jdbcTemplate.queryForObject(sql, rowMapper, pId);
 		return article;
@@ -37,11 +37,11 @@ public class ProductDAOImp implements ProductDAO {
 	@Override
 	public void addProduct(Product product) {
 		// Add product
-		String sql = "INSERT INTO product_data (pId, pName, price) values (?, ?, ?)";
+		String sql = "INSERT INTO product_info (pId, pName, price) values (?, ?, ?)";
 		jdbcTemplate.update(sql, product.getpId(), product.getpName(), product.getPrice());
 
 		// Fetch product id
-		sql = "SELECT pId FROM product_data WHERE pName = ? and price=?";
+		sql = "SELECT pId FROM product_info WHERE pName = ? and price=?";
 		int pId = jdbcTemplate.queryForObject(sql, Integer.class, product.getpName(), product.getPrice());
 
 		// Set product id
@@ -50,19 +50,19 @@ public class ProductDAOImp implements ProductDAO {
 
 	@Override
 	public void updateProduct(Product product) {
-		String sql = "UPDATE product_data SET pName=?, price=? WHERE pId=?";
+		String sql = "UPDATE product_info SET pName=?, price=? WHERE pId=?";
 		jdbcTemplate.update(sql, product.getpName(), product.getPrice(), product.getpId());
 	}
 
 	@Override
 	public void deleteProduct(int pId) {
-		String sql = "DELETE FROM product_data WHERE pId=?";
+		String sql = "DELETE FROM product_info WHERE pId=?";
 		jdbcTemplate.update(sql, pId);
 	}
 
 	@Override
 	public boolean productExists(String pName, String price) {
-		String sql = "SELECT count(*) FROM product_data WHERE pName = ? and price=?";
+		String sql = "SELECT count(*) FROM product_info WHERE pName = ? and price=?";
 		int count = jdbcTemplate.queryForObject(sql, Integer.class, pName, price);
 		if (count == 0) {
 			return false;
