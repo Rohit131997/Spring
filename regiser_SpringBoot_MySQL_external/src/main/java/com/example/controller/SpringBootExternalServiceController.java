@@ -1,31 +1,72 @@
 package com.example.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.example.api.Product;
 import com.example.service.SpringBootExternalService;
 
-@RestController
+@Controller
 @RequestMapping("/myapp")
 public class SpringBootExternalServiceController {
 	@Autowired
 	SpringBootExternalService externalService;
 
-	@GetMapping("/products")
-	public List<Object> getProducts() {
-		return externalService.getProducts();
-
+	@RequestMapping(value="/products", method = RequestMethod.GET)
+	public String getAllProducts(Model model) {
+		List<Product> list = externalService.getAllProducts();
+		model.addAttribute("list", list);
+		return "viewProducts";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/products")
-	public void addProduct(@RequestBody Object object) {
-		externalService.addProduct(object);
+	// fetch the product by id
+		@RequestMapping(value = "/products/{pId}")
+		public Product getProductById(@PathVariable int pId) {
+			return externalService.getProductById(pId);
+		}
 		
-	}
+	/* It displays a page where we can add the products   */
+		
+		@RequestMapping("/addProduct")
+		public String addProduct(@ModelAttribute("userReg") Product product) {
+			return "addProduct";
+		}
+		
+		/* It adds the products into the database*/
+		@RequestMapping("/result")
+		public String processUserRegistration(@ModelAttribute("userReg") Product product) {
+			externalService.addProduct(product);
+			return "result";
+		}
+		
+		 @RequestMapping(value="/editProduct/{pId}")    
+		    public String edit(@PathVariable int pId, Model model){    
+		        Product product= externalService.getProductById(pId);  
+		        model.addAttribute("command",product);  
+		        return "editProduct";    
+		    } 
+
+		  /* It updates model object. */    
+			@RequestMapping(value="/editProduct",method = RequestMethod.GET)    
+		    public String updateProduct(@ModelAttribute("product") Product product){    
+				externalService.updateProduct(product);
+		        return "redirect:/myapp/viewproducts";    
+		    }
+		
+
+		 /* It deletes record for the selected id and redirects to /viewProducts-page */    
+		    @RequestMapping(value="/deleteProduct/{pId}",method = RequestMethod.GET)    
+		    public String delete(@PathVariable int pId){    
+		    	externalService.deleteProduct(pId); 
+		        return "redirect:/myapp/viewproducts";    
+		
+		    }
+		
+		
 }
