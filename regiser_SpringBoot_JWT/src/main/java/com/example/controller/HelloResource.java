@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.models.AuthenticationRequest;
 import com.example.models.AuthenticationResponse;
 import com.example.service.MyUserDetailsService;
 import com.example.util.JwtUtil;
 
-@Controller
+@RestController
 public class HelloResource {
 
 	@Autowired
@@ -28,7 +29,7 @@ public class HelloResource {
 	@Autowired
 	private MyUserDetailsService userDetailsService;
 
-	@RequestMapping({ "/hello" })
+	@RequestMapping("/hello")
 	public String hello() {
 		return "Hello World";
 	}
