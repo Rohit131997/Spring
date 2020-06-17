@@ -30,8 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 	// Set your configuration on auth object
-//		auth.inMemoryAuthentication().withUser("avinash").password("1234").roles("user").and().withUser("avi")
-//				.password("9876").roles("admin");
+//		auth.inMemoryAuthentication().withUser("rohit").password("123").roles("user").and().withUser("varma")
+//				.password("3").roles("admin");
 //		auth.userDetailsService(userDetailsService);
 //	}
 
