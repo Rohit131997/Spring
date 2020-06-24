@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: regiser_SpringBoot_Batch_JDBC
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: nisum
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_251
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/register_SpringBoot_Batch_JDBC
+Created-By: Maven Integration for Eclipse
+
